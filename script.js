@@ -102,8 +102,11 @@ if (contactForm) {
         emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', contactForm)
             .then(() => {
                 // Success State
-                contactForm.classList.add('hidden');
-                formStatus.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'RUN_CONTACT.sh <span class="terminal-arrow">▶</span>';
+                submitBtn.style.opacity = '1';
+                contactForm.reset();
+                alert("Transmission Successful 🚀");
             }, (error) => {
                 // Error State
                 submitBtn.disabled = false;
