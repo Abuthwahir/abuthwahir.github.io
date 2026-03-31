@@ -59,26 +59,58 @@ const expObserver = new IntersectionObserver((entries) => {
 
 expItems.forEach(item => expObserver.observe(item));
 
-// Contact Form Handling
+// EmailJS Initialization
+(function() {
+    // Replace with your real EmailJS Public Key
+    emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+// Contact Scroll Observer (Premium Focus Swap)
+const contactCards = document.querySelectorAll('.contact-card');
+const contactObserverOptions = {
+    threshold: 0.5,
+    rootMargin: "-10% 0px -10% 0px"
+};
+
+const contactObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('focused');
+        } else {
+            entry.target.classList.remove('focused');
+        }
+    });
+}, contactObserverOptions);
+
+contactCards.forEach(card => contactObserver.observe(card));
+
+// Refined EmailJS Form Handling
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
 
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Simple client-side simulation
-        const formData = new FormData(contactForm);
-        const name = formData.get('name');
+        // UI Feedback: Loading State
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'TRANSMITTING... <span class="terminal-arrow">▶</span>';
+        submitBtn.style.opacity = '0.7';
         
-        // Visual feedback
-        contactForm.style.opacity = '0.5';
-        contactForm.style.pointerEvents = 'none';
-        
-        setTimeout(() => {
-            contactForm.classList.add('hidden');
-            formStatus.classList.remove('hidden');
-            console.log(`Message received from ${name}`);
-        }, 800);
+        // EmailJS sendForm: Replace SERVICE_ID and TEMPLATE_ID with your own
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', contactForm)
+            .then(() => {
+                // Success State
+                contactForm.classList.add('hidden');
+                formStatus.classList.remove('hidden');
+            }, (error) => {
+                // Error State
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'RETRY_TRANSMISSION.sh <span class="terminal-arrow">▶</span>';
+                submitBtn.style.opacity = '1';
+                console.error("Transmission Failed:", error);
+                alert("Transmission Failed. Please check your EmailJS configuration or try again later.");
+            });
     });
 }
