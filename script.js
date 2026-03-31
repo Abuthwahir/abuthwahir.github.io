@@ -151,10 +151,47 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Settings Toggle Simulation
-document.querySelectorAll('.toggle').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents closing the pane
-        toggle.classList.toggle('active');
+// Functional Toggles for Settings
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const hudToggle = document.getElementById('hud-toggle');
+
+// Initialize Themes from LocalStorage
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+    if (darkModeToggle) darkModeToggle.classList.remove('active');
+}
+
+if (localStorage.getItem('hud') === 'active') {
+    document.body.classList.add('hud-active');
+    if (hudToggle) hudToggle.classList.add('active');
+}
+
+// Dark Mode Toggle Logic
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isCurrentlyDark = darkModeToggle.classList.toggle('active');
+        if (!isCurrentlyDark) {
+            document.body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.classList.remove('light-mode');
+            localStorage.setItem('theme', 'dark');
+        }
     });
-});
+}
+
+// Recruiter HUD Toggle Logic
+if (hudToggle) {
+    hudToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = hudToggle.classList.toggle('active');
+        if (isActive) {
+            document.body.classList.add('hud-active');
+            localStorage.setItem('hud', 'active');
+        } else {
+            document.body.classList.remove('hud-active');
+            localStorage.setItem('hud', 'inactive');
+        }
+    });
+}

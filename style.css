@@ -4,6 +4,50 @@
   --dim: rgba(255,255,255,0.4); --font-h: 'Space Grotesk', sans-serif;
   --font-p: 'Inter', sans-serif; --font-m: monospace;
 }
+
+body.light-mode {
+  --bg: #f5f5f7; --fg: #1d1d1f; --neon: #14B82C;
+  --glass: rgba(255, 255, 255, 0.8); --border: rgba(0, 0, 0, 0.1);
+  --dim: rgba(0, 0, 0, 0.55);
+}
+
+body.light-mode .blob { opacity: 0.1; filter: blur(150px); }
+body.light-mode .term-window { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,240,245,0.7)); box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+body.light-mode .term-header { background: rgba(0,0,0,0.03); }
+body.light-mode .sidebar { background: rgba(255,255,255,0.8); }
+body.light-mode .c-link { background: rgba(0,0,0,0.03); }
+
+/* Recruiter HUD Mode */
+.hud-active .download-btn {
+  animation: hud-target 1.5s infinite alternate !important;
+  border-width: 3px !important;
+  box-shadow: 0 0 25px var(--neon) !important;
+}
+
+.hud-active .status-line, .hud-active .mode-label {
+  animation: hud-highlight 2s infinite !important;
+}
+
+@keyframes hud-target {
+  from { transform: scale(1.08); box-shadow: 0 0 20px var(--neon); }
+  to { transform: scale(1.15); box-shadow: 0 0 45px var(--neon); border-color: #fff; }
+}
+
+@keyframes hud-highlight {
+  0%, 100% { text-shadow: 0 0 10px var(--neon); }
+  50% { text-shadow: 0 0 25px var(--neon), 0 0 40px var(--neon); transform: translateY(-2px); }
+}
+
+/* Background HUD Overlay */
+body.hud-active::before {
+  content: ''; position: fixed; inset: 0;
+  background: repeating-linear-gradient(rgba(190,245,18,0.01) 0px, transparent 1px, transparent 2px);
+  pointer-events: none; z-index: 1000;
+  animation: hud-scan 10s linear infinite;
+}
+
+@keyframes hud-scan { from { background-position: 0 0; } to { background-position: 0 100%; } }
+
 * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--fg); font-family: var(--font-p); overflow-x: hidden; }
 
