@@ -33,7 +33,33 @@
 
     <header class="topbar">
         <div class="status">STATUS: <span class="text-neon">AVAILABLE FOR WORK</span></div>
-        <div class="actions"><span class="material-symbols-outlined">notifications</span><span class="material-symbols-outlined">settings</span><div class="separator"></div><span class="text-neon">GUEST</span></div>
+        <div class="actions">
+            <div class="action-item">
+                <span class="material-symbols-outlined nav-icon" id="notif-btn">notifications</span>
+                <div id="notif-dropdown" class="window-pane hidden">
+                    <p class="pane-title">NOTIFICATIONS</p>
+                    <div class="pane-content dim">No new notifications</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <span class="material-symbols-outlined nav-icon" id="settings-btn">settings</span>
+                <div id="settings-pane" class="window-pane hidden">
+                    <p class="pane-title">SYSTEM SETTINGS</p>
+                    <div class="pane-content">
+                        <div class="setting-row">
+                            <span>DARK_MODE</span>
+                            <div class="toggle active"></div>
+                        </div>
+                        <div class="setting-row dim">
+                            <span>RECRUITER_HUD</span>
+                            <div class="toggle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <span class="text-neon mode-label">DEV_MODE</span>
+        </div>
     </header>
 
     <main class="content">

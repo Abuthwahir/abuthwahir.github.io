@@ -117,3 +117,44 @@ if (contactForm) {
             });
     });
 }
+
+// Topbar Interactive Panels
+const notifBtn = document.getElementById('notif-btn');
+const settingsBtn = document.getElementById('settings-btn');
+const notifDropdown = document.getElementById('notif-dropdown');
+const settingsPane = document.getElementById('settings-pane');
+
+function togglePanel(panel, otherPanel) {
+    if (panel) {
+        panel.classList.toggle('hidden');
+        if (otherPanel) otherPanel.classList.add('hidden');
+    }
+}
+
+document.addEventListener('click', (e) => {
+    // Toggle Notifications
+    if (notifBtn && notifBtn.contains(e.target)) {
+        togglePanel(notifDropdown, settingsPane);
+    } 
+    // Toggle Settings
+    else if (settingsBtn && settingsBtn.contains(e.target)) {
+        togglePanel(settingsPane, notifDropdown);
+    }
+    // Close panels on click outside
+    else {
+        if (notifDropdown && !notifDropdown.contains(e.target)) {
+            notifDropdown.classList.add('hidden');
+        }
+        if (settingsPane && !settingsPane.contains(e.target)) {
+            settingsPane.classList.add('hidden');
+        }
+    }
+});
+
+// Settings Toggle Simulation
+document.querySelectorAll('.toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents closing the pane
+        toggle.classList.toggle('active');
+    });
+});
