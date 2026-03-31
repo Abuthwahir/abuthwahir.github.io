@@ -158,7 +158,7 @@ const hudToggle = document.getElementById('hud-toggle');
 // Initialize Themes from LocalStorage
 if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light-mode');
-    if (darkModeToggle) darkModeToggle.classList.remove('active');
+    if (darkModeToggle) darkModeToggle.classList.add('active');
 }
 
 if (localStorage.getItem('hud') === 'active') {
@@ -170,8 +170,8 @@ if (localStorage.getItem('hud') === 'active') {
 if (darkModeToggle) {
     darkModeToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isCurrentlyDark = darkModeToggle.classList.toggle('active');
-        if (!isCurrentlyDark) {
+        const isLightMode = darkModeToggle.classList.toggle('active');
+        if (isLightMode) {
             document.body.classList.add('light-mode');
             localStorage.setItem('theme', 'light');
         } else {
