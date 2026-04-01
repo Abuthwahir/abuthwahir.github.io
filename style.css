@@ -63,6 +63,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-p); over
 .text-sm { font-size: 0.8rem; font-family: var(--font-m); } .text-xs { font-size: 0.65rem; font-family: var(--font-m); text-transform: uppercase; }
 .text-2xl { font-size: 1.8rem; } .font-bold { font-weight: 700; } .text-center { text-align: center; }
 .mt-auto { margin-top: auto; } .pt-4 { padding-top: 1rem; } .border-t { border-top: 1px solid var(--border); }
+.mb-1 { margin-bottom: 0.25rem; } .mt-1 { margin-top: 0.25rem; }
 .flex-col { display: flex; flex-direction: column; height: 100%; gap: 0.5rem; } .icon-lg { font-size: 2.5rem; }
 
 /* Sidebar */
@@ -181,7 +182,7 @@ section { min-height: 100vh; padding: 4rem 0; display: flex; flex-direction: col
 
 /* Skills Dashboard */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
-.grid.col-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grid.col-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 .full { grid-column: 1 / -1; }
 
 .term-window { 
@@ -198,6 +199,7 @@ section { min-height: 100vh; padding: 4rem 0; display: flex; flex-direction: col
 }
 
 .term-body { padding: 2.5rem; }
+.term-body.compact { padding: 1.2rem; }
 .card-title { font-family: var(--font-h); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.8rem; letter-spacing: 1px; color: #fff; }
 .pills { display: flex; flex-wrap: wrap; gap: 1rem; }
 
@@ -228,9 +230,13 @@ section { min-height: 100vh; padding: 4rem 0; display: flex; flex-direction: col
 .v-line { position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent); z-index: 1; }
 
 /* Focus Card Premium Scroll Effect (Shared across Experience, Skills, Education) */
-.focus-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important; opacity: 0.5; transform: scale(0.96) !important; cursor: pointer; position: relative; z-index: 2; }
+.focus-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; opacity: 0.5; transform: scale(0.96) !important; cursor: pointer; position: relative; z-index: 2; }
 .focus-card.active { opacity: 1 !important; transform: scale(1.03) !important; box-shadow: 0 0 40px rgba(190, 245, 18, 0.15) !important; border-color: rgba(190, 245, 18, 0.2) !important; z-index: 10 !important; }
 .focus-card:hover { transform: translateY(-5px) scale(1.035) !important; opacity: 1 !important; box-shadow: 0 0 50px rgba(190, 245, 18, 0.2) !important; border-color: rgba(190, 245, 18, 0.3) !important; z-index: 20 !important; }
+
+/* Dedicated Education Card Pop-Up Hover Effect */
+.edu-card.active { border-color: rgba(190, 245, 18, 0.3) !important; box-shadow: 0 0 15px rgba(190, 245, 18, 0.1) !important; }
+.edu-card:hover { transform: translateY(-8px) scale(1.07) !important; border-color: rgba(190, 245, 18, 0.6) !important; box-shadow: 0 15px 50px rgba(190, 245, 18, 0.3) !important; z-index: 30 !important; }
 
 .t-item { position: relative; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0.5; transform: scale(0.96); cursor: pointer; z-index: 2; }
 .t-item.active { opacity: 1; transform: scale(1.03); box-shadow: 0 0 40px rgba(190, 245, 18, 0.15); border-color: rgba(190, 245, 18, 0.2); }
