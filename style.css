@@ -254,8 +254,19 @@ section { min-height: 100vh; padding: 4rem 0; display: flex; flex-direction: col
 .t-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
 .t-head h3 { font-family: var(--font-h); font-size: 1.4rem; color: #fff; }
 
-.badge { padding: 0.3rem 0.6rem; border: 1px solid var(--border); color: var(--dim); font-family: var(--font-m); font-size: 0.75rem; border-radius: 4px; transition: 0.3s; }
-.t-item.active .badge.bright { border-color: rgba(190,245,18,0.4); color: var(--neon); background: rgba(190,245,18,0.1); }
+.badge { 
+    padding: 0.35rem 0.8rem; border: 1px solid rgba(190,245,18,0.3); color: var(--neon); 
+    font-family: var(--font-m); font-size: 0.75rem; border-radius: 20px; 
+    background: rgba(190,245,18,0.05); backdrop-filter: blur(5px);
+    text-shadow: 0 0 8px rgba(190,245,18,0.6); box-shadow: 0 0 10px rgba(190,245,18,0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-block; cursor: default;
+}
+.badge:hover { 
+    transform: scale(1.1) translateY(-2px); border-color: rgba(190,245,18,1); 
+    background: rgba(190,245,18,0.15); color: #fff; 
+    text-shadow: 0 0 15px var(--neon); box-shadow: 0 0 20px rgba(190,245,18,0.5); 
+}
+.t-item.active .badge.bright { border-color: rgba(190,245,18,0.6); }
 
 .t-loc { font-family: var(--font-m); font-size: 0.9rem; margin-bottom: 0.8rem; letter-spacing: 0.5px; }
 .t-desc { font-size: 0.95rem; color: var(--dim); line-height: 1.7; font-weight: 300; }
