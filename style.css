@@ -1596,7 +1596,7 @@ section {
 
   .content {
     margin-left: 0;
-    padding: 2rem;
+    padding: 1.25rem;
     padding-top: 5rem;
   }
 
@@ -1607,6 +1607,31 @@ section {
 
   .hero-btns {
     justify-content: center;
+  }
+
+  /* Mobile Flip Grid Refactors */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .flip-card {
+    min-height: 480px;
+  }
+
+  .project-preview {
+    height: 140px;
+  }
+
+  .front-content, .back-content {
+    padding: 1.25rem;
+  }
+
+  .front-content h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .scroll-text {
+    max-height: 180px;
   }
 }
 
