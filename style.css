@@ -918,17 +918,103 @@ section {
   z-index: 30 !important;
 }
 
-/* Dedicated Deployment Vault Card Pop-Up Hover Effect */
-.vault-card.active {
-  border-color: rgba(190, 245, 18, 0.3) !important;
-  box-shadow: 0 0 15px rgba(190, 245, 18, 0.1) !important;
+/* FLIP CARD MECHANICS (Vault) */
+.flip-card {
+  perspective: 1500px;
+  cursor: pointer;
+  min-height: 480px;
+  height: 100%;
+  display: flex;
 }
 
-.vault-card:hover {
-  transform: translateY(-6px) scale(1.06) !important;
-  border-color: rgba(190, 245, 18, 0.7) !important;
-  box-shadow: 0 15px 45px rgba(190, 245, 18, 0.35) !important;
-  z-index: 30 !important;
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: linear-gradient(135deg, rgba(26, 26, 39, 0.8), rgba(13, 13, 25, 0.7));
+  border: 1px solid rgba(180, 255, 0, 0.25);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(180, 255, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card:hover .flip-card-front, .flip-card:hover .flip-card-back {
+  border-color: rgba(180, 255, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(180, 255, 0, 0.15);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: scale(1.03) rotateX(2deg) rotateY(2deg);
+}
+
+.flip-card.flipped:hover .flip-card-inner {
+  transform: scale(1.03) rotateX(2deg) rotateY(182deg);
+}
+
+.project-preview {
+  width: 100%;
+  height: 180px;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.6s;
+  filter: brightness(0.85);
+}
+
+.flip-card:hover .project-preview img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.front-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.front-content h3 {
+  font-family: var(--font-h);
+  font-size: 1.35rem;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.back-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .t-item {

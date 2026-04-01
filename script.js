@@ -253,3 +253,21 @@ if (hudToggle) {
         }
     });
 }
+
+// Hover/Click Flip-Card Logic
+document.querySelectorAll('.project-flip').forEach(card => {
+    card.addEventListener('click', function(e) {
+        // Prevent flipping if interacting with a link/button specifically
+        if(e.target.closest('a') || e.target.closest('button')) return;
+        
+        const isFlipped = this.classList.contains('flipped');
+        
+        // Remove 'flipped' from all cards
+        document.querySelectorAll('.project-flip.flipped').forEach(f => f.classList.remove('flipped'));
+        
+        // Add 'flipped' back to clicked card only if it wasn't flipped initially
+        if(!isFlipped) {
+            this.classList.add('flipped');
+        }
+    });
+});
