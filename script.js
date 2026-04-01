@@ -256,6 +256,8 @@ if (hudToggle) {
 
 // Hover/Click Flip-Card Logic
 document.querySelectorAll('.project-flip').forEach(card => {
+    let hoverTimer;
+
     card.addEventListener('click', function(e) {
         // Prevent flipping if interacting with a link/button specifically
         if(e.target.closest('a') || e.target.closest('button')) return;
@@ -269,5 +271,21 @@ document.querySelectorAll('.project-flip').forEach(card => {
         if(!isFlipped) {
             this.classList.add('flipped');
         }
+    });
+
+    // Auto-Flip on prolonged Hover (Delay of 1.2s)
+    card.addEventListener('mouseenter', function() {
+        hoverTimer = setTimeout(() => {
+            if (!this.classList.contains('flipped')) {
+                // Remove flipped from all sibling cards to keep screen clean
+                document.querySelectorAll('.project-flip.flipped').forEach(f => f.classList.remove('flipped'));
+                this.classList.add('flipped');
+            }
+        }, 1200); 
+    });
+
+    card.addEventListener('mouseleave', function() {
+        // Cancel the flip if they scrub the mouse out before the timer completes
+        if (hoverTimer) clearTimeout(hoverTimer);
     });
 });
