@@ -1,3 +1,58 @@
+// System Boot Sequence (Runs once per session)
+const initBootSequence = () => {
+    if (sessionStorage.getItem('system_booted') === 'true') return;
+    
+    const heroText = document.querySelector('.hero-text');
+    if (!heroText) return;
+
+    const originalGreeting = "Hello, World_";
+    const originalName = "Abuthwahir H M";
+    
+    const greetingEl = heroText.querySelector('.greeting');
+    const nameEl = heroText.querySelector('.name');
+    const contentToHide = heroText.querySelectorAll('.title, .desc, .hero-btns');
+    
+    // Hide peripheral content initially
+    contentToHide.forEach(el => el.style.opacity = '0');
+    
+    const chars = '!@#$%^&*()_+{}|:<>?~[]-=`';
+    let iterations = 0;
+    const maxIterations = 15; // Animation duration control
+
+    // Create the glitch effect interval
+    const scrambleInterval = setInterval(() => {
+        // Scramble greeting
+        greetingEl.textContent = ">>> LOADING_PROFILE" + ".".repeat(iterations % 4);
+        
+        // Scramble name with random chars matching length
+        nameEl.textContent = originalName.split('').map((char, index) => {
+            if (char === ' ') return ' ';
+            // Progressively reveal actual characters
+            if (index < (iterations / maxIterations) * originalName.length) {
+                return originalName[index];
+            }
+            return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        
+        iterations++;
+        
+        // End animation
+        if (iterations > maxIterations) {
+            clearInterval(scrambleInterval);
+            greetingEl.textContent = originalGreeting;
+            nameEl.textContent = originalName;
+            
+            // Fade peripheral content back in
+            contentToHide.forEach(el => {
+                el.style.transition = 'opacity 0.8s ease-in';
+                el.style.opacity = '1';
+            });
+            
+            sessionStorage.setItem('system_booted', 'true');
+        }
+    }, 60); // 60ms * 15 iterations = ~900ms duration
+};
+
 // Typing effect
 const typedSpan = document.getElementById("typed");
 const roles = ["AI/ML Engineer", "Full Stack Developer"];
@@ -14,7 +69,10 @@ function typeEffect() {
     else if(isDeleting && charIdx === 0) { isDeleting = false; idx = (idx + 1) % roles.length; speed = 500; }
     setTimeout(typeEffect, speed);
 }
-document.addEventListener("DOMContentLoaded", typeEffect);
+document.addEventListener("DOMContentLoaded", () => {
+    initBootSequence();
+    typeEffect();
+});
 
 // Scroll reveal
 function reveal() {
