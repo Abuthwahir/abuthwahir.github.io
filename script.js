@@ -40,8 +40,8 @@ window.addEventListener("scroll", () => {
     });
 });
 
-// Experience Intersection Observer
-const expItems = document.querySelectorAll('.t-item');
+// Experience and Focus Cards Intersection Observer
+const expItems = document.querySelectorAll('.t-item, .focus-card');
 const observerOptions = {
     threshold: 0.4,
     rootMargin: "-10% 0px -10% 0px"
