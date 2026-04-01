@@ -268,7 +268,8 @@ section { min-height: 100vh; padding: 4rem 0; display: flex; flex-direction: col
 .status { font-family: var(--font-m); font-style: italic; color: var(--dim); font-size: 0.7rem; }
 .links { display: flex; gap: 1rem; }
 .btn-link { font-family: var(--font-h); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; text-decoration: none; color: var(--dim); transition: 0.3s; }
-.hover-neon:hover { color: var(--neon); }
+.btn-private { font-family: var(--font-m); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; color: var(--dim); opacity: 0.6; cursor: not-allowed; user-select: none; border: 1px dashed rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; }
+.hover-neon:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon); transform: translateX(3px); display: inline-block; }
 
 /* Sidebar Footer */
 .sidebar-ftr { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1.5rem 2rem; display: flex; gap: 1.2rem; border-top: 1px solid var(--border); background: rgba(0,0,0,0.2); }
