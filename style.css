@@ -922,7 +922,7 @@ section {
 .flip-card {
   perspective: 1500px;
   cursor: pointer;
-  min-height: 480px;
+  min-height: 440px;
   height: 100%;
   display: flex;
 }
@@ -1011,10 +1011,78 @@ section {
 }
 
 .back-content {
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   flex: 1;
+  justify-content: space-between;
+}
+
+.scroll-text {
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Ensure Custom scrollbar for scroll-text */
+.scroll-text::-webkit-scrollbar {
+  width: 4px;
+}
+.scroll-text::-webkit-scrollbar-thumb {
+  background: rgba(180, 255, 0, 0.3);
+  border-radius: 4px;
+}
+
+.card-ftr {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* PROJECT BUTTONS (VIEW CODE / PRIVATE) */
+.btn-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: 1px solid #00f0ff;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  color: #00f0ff;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  background: #00f0ff;
+  color: black;
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
+  transform: scale(1.05);
+}
+
+.btn-private {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: 1px solid #ff4d6d;
+  border-radius: 6px;
+  color: #ff4d6d;
+  letter-spacing: 1px;
+  box-shadow: 0 0 6px rgba(255, 77, 109, 0.4);
+  transition: all 0.3s ease;
+  display: inline-block;
+  cursor: not-allowed;
+}
+
+.btn-private:hover {
+  background: #ff4d6d;
+  color: black;
+  box-shadow: 0 0 15px #ff4d6d, 0 0 30px #ff4d6d;
+}
+
+.projects .grid {
+  gap: 1.5rem;
 }
 
 .t-item {
