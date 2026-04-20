@@ -84,7 +84,29 @@ window.addEventListener("scroll", reveal);
 reveal();
 
 // Mobile Nav
-document.getElementById("mobile-btn").addEventListener("click", () => document.getElementById("sidebar").classList.toggle("show"));
+const mobileBtn = document.getElementById("mobile-btn");
+const sidebar = document.getElementById("sidebar");
+
+if (mobileBtn && sidebar) {
+    mobileBtn.addEventListener("click", () => sidebar.classList.toggle("show"));
+    
+    // Close sidebar when clicking on a link (on mobile)
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            if (window.innerWidth <= 768) sidebar.classList.remove("show");
+        });
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768 && 
+            sidebar.classList.contains("show") && 
+            !sidebar.contains(e.target) && 
+            !mobileBtn.contains(e.target)) {
+            sidebar.classList.remove("show");
+        }
+    });
+}
 
 // Active section link highlighting
 const sections = document.querySelectorAll("section");
@@ -281,7 +303,7 @@ document.querySelectorAll('.project-flip').forEach(card => {
                 document.querySelectorAll('.project-flip.flipped').forEach(f => f.classList.remove('flipped'));
                 this.classList.add('flipped');
             }
-        }, 1200); 
+        }, 400); 
     });
 
     card.addEventListener('mouseleave', function() {
