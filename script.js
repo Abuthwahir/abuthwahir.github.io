@@ -1,20 +1,20 @@
 // System Boot Sequence (Runs once per session)
 const initBootSequence = () => {
     if (sessionStorage.getItem('system_booted') === 'true') return;
-    
+
     const heroText = document.querySelector('.hero-text');
     if (!heroText) return;
 
     const originalGreeting = "Hello, World_";
     const originalName = "Abuthwahir H M";
-    
+
     const greetingEl = heroText.querySelector('.greeting');
     const nameEl = heroText.querySelector('.name');
     const contentToHide = heroText.querySelectorAll('.title, .desc, .hero-btns');
-    
+
     // Hide peripheral content initially
     contentToHide.forEach(el => el.style.opacity = '0');
-    
+
     const chars = '!@#$%^&*()_+{}|:<>?~[]-=`';
     let iterations = 0;
     const maxIterations = 15; // Animation duration control
@@ -23,7 +23,7 @@ const initBootSequence = () => {
     const scrambleInterval = setInterval(() => {
         // Scramble greeting
         greetingEl.textContent = ">>> LOADING_PROFILE" + ".".repeat(iterations % 4);
-        
+
         // Scramble name with random chars matching length
         nameEl.textContent = originalName.split('').map((char, index) => {
             if (char === ' ') return ' ';
@@ -33,21 +33,21 @@ const initBootSequence = () => {
             }
             return chars[Math.floor(Math.random() * chars.length)];
         }).join('');
-        
+
         iterations++;
-        
+
         // End animation
         if (iterations > maxIterations) {
             clearInterval(scrambleInterval);
             greetingEl.textContent = originalGreeting;
             nameEl.textContent = originalName;
-            
+
             // Fade peripheral content back in
             contentToHide.forEach(el => {
                 el.style.transition = 'opacity 0.8s ease-in';
                 el.style.opacity = '1';
             });
-            
+
             sessionStorage.setItem('system_booted', 'true');
         }
     }, 60); // 60ms * 15 iterations = ~900ms duration
@@ -61,12 +61,12 @@ let isDeleting = false;
 
 function typeEffect() {
     const currentWord = roles[idx];
-    if(isDeleting) charIdx--; else charIdx++;
+    if (isDeleting) charIdx--; else charIdx++;
     typedSpan.textContent = currentWord.substring(0, charIdx);
-    
+
     let speed = isDeleting ? 50 : 100;
-    if(!isDeleting && charIdx === currentWord.length) { speed = 2000; isDeleting = true; }
-    else if(isDeleting && charIdx === 0) { isDeleting = false; idx = (idx + 1) % roles.length; speed = 500; }
+    if (!isDeleting && charIdx === currentWord.length) { speed = 2000; isDeleting = true; }
+    else if (isDeleting && charIdx === 0) { isDeleting = false; idx = (idx + 1) % roles.length; speed = 500; }
     setTimeout(typeEffect, speed);
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Scroll reveal
 function reveal() {
     document.querySelectorAll(".reveal").forEach(el => {
-        if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
     });
 }
 window.addEventListener("scroll", reveal);
@@ -89,7 +89,7 @@ const sidebar = document.getElementById("sidebar");
 
 if (mobileBtn && sidebar) {
     mobileBtn.addEventListener("click", () => sidebar.classList.toggle("show"));
-    
+
     // Close sidebar when clicking on a link (on mobile)
     document.querySelectorAll(".nav-link").forEach(link => {
         link.addEventListener("click", () => {
@@ -99,9 +99,9 @@ if (mobileBtn && sidebar) {
 
     // Close sidebar when clicking outside on mobile
     document.addEventListener("click", (e) => {
-        if (window.innerWidth <= 768 && 
-            sidebar.classList.contains("show") && 
-            !sidebar.contains(e.target) && 
+        if (window.innerWidth <= 768 &&
+            sidebar.classList.contains("show") &&
+            !sidebar.contains(e.target) &&
             !mobileBtn.contains(e.target)) {
             sidebar.classList.remove("show");
         }
@@ -113,10 +113,10 @@ const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
 window.addEventListener("scroll", () => {
     let current = "";
-    sections.forEach(sec => { if(scrollY >= sec.offsetTop - 150) current = sec.getAttribute("id"); });
+    sections.forEach(sec => { if (scrollY >= sec.offsetTop - 150) current = sec.getAttribute("id"); });
     navLinks.forEach(link => {
         link.classList.remove("active");
-        if(link.getAttribute("href").includes(current)) link.classList.add("active");
+        if (link.getAttribute("href").includes(current)) link.classList.add("active");
     });
 });
 
@@ -139,12 +139,68 @@ const expObserver = new IntersectionObserver((entries) => {
 
 expItems.forEach(item => expObserver.observe(item));
 
-// EmailJS Initialization
-(function() {
-    // Replace with your real EmailJS Public Key
-    emailjs.init("YOUR_PUBLIC_KEY");
+// --- EmailJS INIT ---
+(function () {
+    emailjs.init("WVn1amxKA0i-b12Nk");
 })();
 
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const formStatus = document.getElementById('form-status');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const originalBtnHTML = 'RUN_CONTACT.sh <span class="terminal-arrow">▶</span>';
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'TRANSMITTING...';
+        formStatus.classList.add('hidden');
+
+        // GET VALUES
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+
+        // --- EMAILJS SEND ---
+        emailjs.send("service_r1zs8gx", "template_1csdxjf", {
+            name: name,
+            email: email,
+            phone: phone,
+            message: message
+        })
+            .then(() => {
+                // SUCCESS
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHTML;
+
+                formStatus.innerHTML = '<span class="text-neon">> MESSAGE_SENT_SUCCESSFULLY</span>';
+                formStatus.classList.remove('hidden');
+
+                contactForm.reset();
+            })
+            .catch((error) => {
+                console.error("EmailJS ERROR:", error);
+
+                // --- FALLBACK MAILTO ---
+                const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+                const body = encodeURIComponent(
+                    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
+                );
+
+                window.location.href = `mailto:hmabuthwahir@gmail.com?subject=${subject}&body=${body}`;
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHTML;
+
+                formStatus.innerHTML =
+                    '<span style="color:#ff5f56;">> TRANSMISSION_FAILED - OPENING_MAIL_CLIENT</span>';
+                formStatus.classList.remove('hidden');
+            });
+    });
+}
 // Contact Scroll Observer (Premium Focus Swap)
 const contactCards = document.querySelectorAll('.contact-card');
 const contactObserverOptions = {
@@ -164,40 +220,6 @@ const contactObserver = new IntersectionObserver((entries) => {
 
 contactCards.forEach(card => contactObserver.observe(card));
 
-// Refined EmailJS Form Handling
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
-const submitBtn = document.getElementById('submit-btn');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // UI Feedback: Loading State
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'TRANSMITTING... <span class="terminal-arrow">▶</span>';
-        submitBtn.style.opacity = '0.7';
-        
-        // EmailJS sendForm: Replace SERVICE_ID and TEMPLATE_ID with your own
-        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', contactForm)
-            .then(() => {
-                // Success State
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'RUN_CONTACT.sh <span class="terminal-arrow">▶</span>';
-                submitBtn.style.opacity = '1';
-                contactForm.reset();
-                alert("Transmission Successful 🚀");
-            }, (error) => {
-                // Error State
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'RETRY_TRANSMISSION.sh <span class="terminal-arrow">▶</span>';
-                submitBtn.style.opacity = '1';
-                console.error("Transmission Failed:", error);
-                alert("Transmission Failed. Please check your EmailJS configuration or try again later.");
-            });
-    });
-}
-
 // Topbar Interactive Panels
 const notifBtn = document.getElementById('notif-btn');
 const settingsBtn = document.getElementById('settings-btn');
@@ -215,7 +237,7 @@ document.addEventListener('click', (e) => {
     // Toggle Notifications
     if (notifBtn && notifBtn.contains(e.target)) {
         togglePanel(notifDropdown, settingsPane);
-    } 
+    }
     // Toggle Settings
     else if (settingsBtn && settingsBtn.contains(e.target)) {
         togglePanel(settingsPane, notifDropdown);
@@ -280,33 +302,33 @@ if (hudToggle) {
 document.querySelectorAll('.project-flip').forEach(card => {
     let hoverTimer;
 
-    card.addEventListener('click', function(e) {
+    card.addEventListener('click', function (e) {
         // Prevent flipping if interacting with a link/button specifically
-        if(e.target.closest('a') || e.target.closest('button')) return;
-        
+        if (e.target.closest('a') || e.target.closest('button')) return;
+
         const isFlipped = this.classList.contains('flipped');
-        
+
         // Remove 'flipped' from all cards
         document.querySelectorAll('.project-flip.flipped').forEach(f => f.classList.remove('flipped'));
-        
+
         // Add 'flipped' back to clicked card only if it wasn't flipped initially
-        if(!isFlipped) {
+        if (!isFlipped) {
             this.classList.add('flipped');
         }
     });
 
     // Auto-Flip on prolonged Hover (Delay of 1.2s)
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         hoverTimer = setTimeout(() => {
             if (!this.classList.contains('flipped')) {
                 // Remove flipped from all sibling cards to keep screen clean
                 document.querySelectorAll('.project-flip.flipped').forEach(f => f.classList.remove('flipped'));
                 this.classList.add('flipped');
             }
-        }, 400); 
+        }, 400);
     });
 
-    card.addEventListener('mouseleave', function() {
+    card.addEventListener('mouseleave', function () {
         // Cancel the flip if they scrub the mouse out before the timer completes
         if (hoverTimer) clearTimeout(hoverTimer);
     });
