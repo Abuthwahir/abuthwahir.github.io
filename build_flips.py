@@ -28,6 +28,16 @@ projects = [
     },
     {
         "id": "3",
+        "name": "AI Interview Coach",
+        "file": "ai_coach.py",
+        "img": "Ai_interview_coach.png",
+        "tech": ['<span class="badge bright">Python</span>', '<span class="badge">LangChain</span>', '<span class="badge">Groq API</span>', '<span class="badge">Streamlit</span>', '<span class="badge">RAG</span>', '<span class="badge">LLM</span>', '<span class="badge">NLP</span>'],
+        "desc": "Adaptive multi-turn interview simulation platform using LangChain, Groq, and Streamlit to simulate real technical interviews with memory, structured evaluation, and adaptive difficulty.<br><br>- Multi-turn interview flow with conversational memory<br>- Structured evaluation (score, strengths, improvements)<br>- Adaptive difficulty progression<br>- RAG-based job-aware question generation<br>- CLI + Streamlit interface<br>- Final performance report with transcript",
+        "status": "deployed",
+        "link": '<a href="https://github.com/Abuthwahir/ai-interview-coach-using-rag" target="_blank" class="btn-link hover-neon text-neon" style="display:flex;align-items:center;">VIEW_CODE &gt;&gt;</a>'
+    },
+    {
+        "id": "4",
         "name": "Theatre Management",
         "file": "theatre_sys.sql",
         "img": "Theatre-Management-system.png",
@@ -37,8 +47,8 @@ projects = [
         "link": '<a href="https://github.com/Abuthwahir/theatre-management-system-using-SQL" target="_blank" class="btn-link hover-neon text-neon" style="display:flex;align-items:center;">VIEW_CODE &gt;&gt;</a>'
     },
     {
-        "id": "4",
-        "name": "Task Management System",
+        "id": "5",
+        "name": "Task Management System using SpringBoot",
         "file": "task_mgr.java",
         "img": "Task-Management-System.png",
         "tech": ['<span class="badge bright">Spring Boot</span>', '<span class="badge">Java</span>'],
@@ -47,8 +57,8 @@ projects = [
         "link": '<a href="https://github.com/Abuthwahir/task-management-system-using-springboot" target="_blank" class="btn-link hover-neon text-neon" style="display:flex;align-items:center;">VIEW_CODE &gt;&gt;</a>'
     },
     {
-        "id": "5",
-        "name": "Domain Predictor",
+        "id": "6",
+        "name": "Top Level Domain Predictor Game",
         "file": "domain_svc.py",
         "img": "Domain Guesser.png",
         "tech": ['<span class="badge bright">Flask</span>', '<span class="badge">Machine Learning</span>'],
@@ -57,8 +67,8 @@ projects = [
         "link": '<a href="https://github.com/Abuthwahir/TLD-Predictor" target="_blank" class="btn-link hover-neon text-neon" style="display:flex;align-items:center;">VIEW_CODE &gt;&gt;</a>'
     },
     {
-        "id": "6",
-        "name": "Diabetes Risk (NHANES+XAI)",
+        "id": "7",
+        "name": "Type 2 Diabetes (T2DM) Risk Assessment (NHANES+XAI)",
         "file": "nhanes_xai.py",
         "img": "Type2-NHANES.png",
         "tech": ['<span class="badge bright">Python</span>', '<span class="badge">SHAP</span>', '<span class="badge">XGBoost</span>'],
@@ -67,8 +77,8 @@ projects = [
         "link": '<span class="btn-private" title="Repository is Private">PRIVATE_REPO_🔐</span>'
     },
     {
-        "id": "7",
-        "name": "Analysis Dashboard (Capstone)",
+        "id": "8",
+        "name": "Multimodal Stock Market Analysis Dashboard (Capstone)",
         "file": "finance_dashboard.py",
         "img": "Stock-Analysis.png",
         "tech": ['<span class="badge bright">Data Analysis</span>', '<span class="badge">Visualization</span>'],
@@ -77,8 +87,8 @@ projects = [
         "link": '<span class="btn-private" title="Repository is Private">PRIVATE_REPO_🔐</span>'
     },
     {
-        "id": "8",
-        "name": "GTG Perfumes",
+        "id": "9",
+        "name": "GTG Perfumes frontend design using Figma",
         "file": "gtg_perfumes.html",
         "img": "GTG-perfumes.png",
         "tech": ['<span class="badge bright">HTML</span>', '<span class="badge">CSS</span>', '<span class="badge">JavaScript</span>'],
