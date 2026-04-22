@@ -1,7 +1,6 @@
 :root {
   --bg: #050505;
   --fg: #e3e0f2;
-  --neon: #A3FF12;
   --glass: rgba(26, 26, 39, 0.7);
   --border: rgba(255, 255, 255, 0.05);
   --dim: rgba(255, 255, 255, 0.4);
@@ -11,7 +10,11 @@
   --max-width: 1400px;
 
   /* Theme Variable System */
-  --accent: #A3FF12;
+  --accent-dark: #A3FF12;
+  --accent-light: #1f7a00;
+  --accent: var(--accent-dark);
+  --neon: var(--accent); /* Deprecated/mapped to accent to preserve dark mode compatibility */
+
   --bg-dark: #0a0a0a;
   --text-dark: #eaeaea;
   --bg-light: #f5f5f5;
@@ -22,15 +25,27 @@
 }
 
 body.light-mode {
+  --accent: var(--accent-light);
+  --neon: var(--accent);
   --bg: var(--bg-light);
   --fg: var(--text-light);
-  --neon: var(--accent);
   --glass: var(--card-light);
   --border: rgba(0, 0, 0, 0.1);
   --dim: var(--text-secondary);
   background: var(--bg-light);
   color: var(--text-light);
 }
+
+/* Remove all glow effects globally in light mode ONLY */
+body.light-mode * {
+  text-shadow: none !important;
+}
+
+body.light-mode .img-glow,
+body.light-mode .blob {
+  display: none !important;
+}
+
 
 /* Global Light Mode Text Fixes */
 body.light-mode h1, 
@@ -79,12 +94,18 @@ body.light-mode .topbar .status {
   color: #111 !important;
 }
 body.light-mode .topbar .status .text-neon {
-  color: var(--neon) !important;
-  text-shadow: 0 0 5px rgba(163,255,18,0.4) !important;
+  color: var(--accent) !important;
+  font-weight: 600;
 }
 body.light-mode .status-line .text-neon {
-  color: var(--neon) !important;
-  text-shadow: 0 0 5px rgba(163,255,18,0.4) !important;
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+body.light-mode .text-neon,
+body.light-mode .accent,
+body.light-mode .status span {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* Only keep neon for the cursor or explicitly allowed items, otherwise neon variables handle it */
@@ -135,8 +156,40 @@ body.light-mode .ftr-link:hover,
 body.light-mode .pill:hover,
 body.light-mode .badge:hover {
   color: #000 !important;
-  text-shadow: 0 0 6px rgba(163,255,18,0.4) !important;
-  border-color: var(--neon) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Fix icons + small green elements */
+body.light-mode .indicator,
+body.light-mode .timeline-dot,
+body.light-mode .t-dot,
+body.light-mode .dot.green,
+body.light-mode .t-item.active .t-dot {
+  background: var(--accent) !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+}
+
+/* Fix buttons */
+body.light-mode .btn,
+body.light-mode .download-btn,
+body.light-mode .fab,
+body.light-mode #submit-btn {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body.light-mode .btn:hover,
+body.light-mode .download-btn:hover,
+body.light-mode .fab:hover,
+body.light-mode #submit-btn:hover {
+  background: #166400 !important;
+  color: #fff !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
 }
 
 /* Card Hover Enhancements */
@@ -147,6 +200,7 @@ body.light-mode .c-link:hover {
   background: #eaeaea !important;
   transform: scale(1.01) !important;
   transition: all 0.2s ease !important;
+  border-color: var(--accent) !important;
 }
 
 /* FLIP CARD BUG FIXES (LIGHT MODE ONLY) */
@@ -178,8 +232,8 @@ body.light-mode .flip-card-back {
 }
 
 body.light-mode .btn-link:hover {
-  background: var(--neon) !important;
-  color: #000 !important;
+  background: var(--accent) !important;
+  color: #fff !important;
 }
 
 /* Recruiter HUD Mode */
