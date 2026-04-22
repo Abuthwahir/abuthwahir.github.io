@@ -221,32 +221,22 @@ const contactObserver = new IntersectionObserver((entries) => {
 contactCards.forEach(card => contactObserver.observe(card));
 
 // Topbar Interactive Panels
-const notifBtn = document.getElementById('notif-btn');
 const settingsBtn = document.getElementById('settings-btn');
-const notifDropdown = document.getElementById('notif-dropdown');
 const settingsPane = document.getElementById('settings-pane');
 
-function togglePanel(panel, otherPanel) {
+function togglePanel(panel) {
     if (panel) {
         panel.classList.toggle('hidden');
-        if (otherPanel) otherPanel.classList.add('hidden');
     }
 }
 
 document.addEventListener('click', (e) => {
-    // Toggle Notifications
-    if (notifBtn && notifBtn.contains(e.target)) {
-        togglePanel(notifDropdown, settingsPane);
-    }
     // Toggle Settings
-    else if (settingsBtn && settingsBtn.contains(e.target)) {
-        togglePanel(settingsPane, notifDropdown);
+    if (settingsBtn && settingsBtn.contains(e.target)) {
+        togglePanel(settingsPane);
     }
     // Close panels on click outside
     else {
-        if (notifDropdown && !notifDropdown.contains(e.target)) {
-            notifDropdown.classList.add('hidden');
-        }
         if (settingsPane && !settingsPane.contains(e.target)) {
             settingsPane.classList.add('hidden');
         }
