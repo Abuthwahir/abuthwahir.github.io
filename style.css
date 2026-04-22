@@ -1,7 +1,7 @@
 :root {
   --bg: #050505;
   --fg: #e3e0f2;
-  --neon: #bef512;
+  --neon: #A3FF12;
   --glass: rgba(26, 26, 39, 0.7);
   --border: rgba(255, 255, 255, 0.05);
   --dim: rgba(255, 255, 255, 0.4);
@@ -9,15 +9,111 @@
   --font-p: 'Inter', sans-serif;
   --font-m: monospace;
   --max-width: 1400px;
+
+  /* Theme Variable System */
+  --accent: #A3FF12;
+  --bg-dark: #0a0a0a;
+  --text-dark: #eaeaea;
+  --bg-light: #f5f5f5;
+  --text-light: #111;
+  --text-strong: #222;
+  --text-secondary: #333;
+  --card-light: #ffffff;
 }
 
 body.light-mode {
-  --bg: #f5f5f7;
-  --fg: #1d1d1f;
-  --neon: #14B82C;
-  --glass: rgba(255, 255, 255, 0.8);
+  --bg: var(--bg-light);
+  --fg: var(--text-light);
+  --neon: var(--accent);
+  --glass: var(--card-light);
   --border: rgba(0, 0, 0, 0.1);
-  --dim: rgba(0, 0, 0, 0.55);
+  --dim: var(--text-secondary);
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* Global Light Mode Text Fixes */
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3, 
+body.light-mode h4, 
+body.light-mode h5, 
+body.light-mode h6,
+body.light-mode .card-title,
+body.light-mode .t-head h3,
+body.light-mode .front-content h3,
+body.light-mode .title,
+body.light-mode .name,
+body.light-mode .white-icon {
+  color: #111 !important;
+}
+
+body.light-mode p,
+body.light-mode .desc,
+body.light-mode .t-desc,
+body.light-mode .c-info small,
+body.light-mode .dim,
+body.light-mode .text-sm,
+body.light-mode .text-xs,
+body.light-mode .status,
+body.light-mode .filename {
+  color: var(--text-secondary) !important;
+  opacity: 1 !important;
+}
+
+body.light-mode .c-link,
+body.light-mode .c-info span,
+body.light-mode .btn-link,
+body.light-mode .btn-private,
+body.light-mode .exp-date,
+body.light-mode .nav-link,
+body.light-mode .ftr-link,
+body.light-mode .pill,
+body.light-mode .badge {
+  color: var(--text-strong) !important;
+  opacity: 1 !important;
+}
+
+/* Fix Status Text specially */
+body.light-mode .topbar .status {
+  color: #111 !important;
+}
+body.light-mode .topbar .status .text-neon {
+  color: var(--neon) !important;
+  text-shadow: 0 0 5px rgba(163,255,18,0.4) !important;
+}
+body.light-mode .status-line .text-neon {
+  color: var(--neon) !important;
+  text-shadow: 0 0 5px rgba(163,255,18,0.4) !important;
+}
+
+/* Only keep neon for the cursor or explicitly allowed items, otherwise neon variables handle it */
+body.light-mode .cursor {
+  color: var(--neon) !important;
+}
+
+/* Cards Normal State in Light Mode */
+body.light-mode .term-window,
+body.light-mode .flip-card-front,
+body.light-mode .flip-card-back {
+  background: var(--card-light) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid var(--border) !important;
+}
+
+body.light-mode .term-header {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+body.light-mode .sidebar {
+  background: rgba(255, 255, 255, 0.95);
+  border-right: 1px solid var(--border);
+}
+
+body.light-mode .c-link {
+  background: var(--card-light) !important;
+  border: 1px solid var(--border) !important;
 }
 
 body.light-mode .blob {
@@ -25,21 +121,65 @@ body.light-mode .blob {
   filter: blur(150px);
 }
 
-body.light-mode .term-window {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 245, 0.7));
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+/* ----------------------------------------------------
+   3. HOVER STATE IMPROVEMENT (CRITICAL UX) 
+   ---------------------------------------------------- */
+
+/* Interactive Text / Links Hover */
+body.light-mode .c-link:hover,
+body.light-mode .c-link:hover .c-info span,
+body.light-mode .c-link:hover .c-info small,
+body.light-mode .btn-link:hover,
+body.light-mode .nav-link:hover,
+body.light-mode .ftr-link:hover,
+body.light-mode .pill:hover,
+body.light-mode .badge:hover {
+  color: #000 !important;
+  text-shadow: 0 0 6px rgba(163,255,18,0.4) !important;
+  border-color: var(--neon) !important;
 }
 
-body.light-mode .term-header {
-  background: rgba(0, 0, 0, 0.03);
+/* Card Hover Enhancements */
+body.light-mode .term-window:hover,
+body.light-mode .focus-card:hover,
+body.light-mode .contact-card:hover,
+body.light-mode .c-link:hover {
+  background: #eaeaea !important;
+  transform: scale(1.01) !important;
+  transition: all 0.2s ease !important;
 }
 
-body.light-mode .sidebar {
-  background: rgba(255, 255, 255, 0.8);
+/* FLIP CARD BUG FIXES (LIGHT MODE ONLY) */
+body.light-mode .flip-card {
+  will-change: transform;
 }
 
-body.light-mode .c-link {
-  background: rgba(0, 0, 0, 0.03);
+body.light-mode .flip-card:not(:hover) .flip-card-inner {
+  transform: rotateY(0deg) !important;
+}
+
+body.light-mode .flip-card:hover .flip-card-front,
+body.light-mode .flip-card:hover .flip-card-back {
+  background: #eaeaea !important;
+}
+
+body.light-mode .flip-card-front,
+body.light-mode .flip-card-back {
+  background: #ffffff !important;
+  color: #111 !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+}
+
+body.light-mode .flip-card-back {
+  transform: rotateY(180deg) !important;
+}
+
+body.light-mode .btn-link:hover {
+  background: var(--neon) !important;
+  color: #000 !important;
 }
 
 /* Recruiter HUD Mode */

@@ -321,5 +321,19 @@ document.querySelectorAll('.project-flip').forEach(card => {
     card.addEventListener('mouseleave', function () {
         // Cancel the flip if they scrub the mouse out before the timer completes
         if (hoverTimer) clearTimeout(hoverTimer);
+
+        // LIGHT MODE FIX: Remove flipped state on hover exit to prevent stuck backsides
+        if (document.body.classList.contains('light-mode')) {
+            this.classList.remove('flipped');
+            const inner = this.querySelector('.flip-card-inner');
+            if (inner) {
+                inner.style.transform = 'rotateY(0deg)';
+                setTimeout(() => {
+                    if (!this.classList.contains('flipped')) {
+                        inner.style.transform = '';
+                    }
+                }, 600); // clear inline style after transition
+            }
+        }
     });
 });
