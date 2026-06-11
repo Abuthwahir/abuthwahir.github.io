@@ -27,6 +27,8 @@ This portfolio is a custom-built personal project created to represent my indivi
 * View and explore the source code for educational purposes.
 * Review the project to evaluate my development skills, coding practices, and technical capabilities.
 * Reference the repository as part of recruitment, academic, or professional evaluation.
+* Use this repository as a template or foundation for another portfolio website.
+
 
 ### Prohibited Use
 
@@ -35,7 +37,6 @@ This portfolio is a custom-built personal project created to represent my indivi
 * Copy, clone, or redistribute this project in whole or in part.
 * Reuse the visual design, UI/UX elements, branding, layout, or implementation for personal or commercial projects.
 * Republish, modify, or present this work as your own.
-* Use this repository as a template or foundation for another portfolio website.
 
 ### Permission Requests
 
