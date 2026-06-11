@@ -1,27 +1,44 @@
-# Abuthwahir H M - Personal Portfolio
+# Abuthwahir H M – Personal Portfolio
 
-A custom-developed developer portfolio built to showcase technical projects, skills, and experience through a high-end, terminal-inspired glassmorphism user interface.
+A custom-developed developer portfolio designed to showcase my technical projects, skills, and experience through a modern, terminal-inspired interface featuring glassmorphism aesthetics and interactive user experiences.
 
 ## Contact & Collaboration
-If you are interested in discussing projects, networking, or seeking collaboration, feel free to reach out to me directly:
-- **Email:** [hmabuthwahir@gmail.com](mailto:hmabuthwahir@gmail.com)
-- **Live:** (https://abuthwahir.github.io/)
+
+I am always open to discussing projects, networking opportunities, and potential collaborations.
+
+* **Email:** [hmabuthwahir@gmail.com](mailto:hmabuthwahir@gmail.com)
+* **Portfolio:** https://abuthwahir.github.io/
 
 ---
 
-## ⚖️ License & Copyright
+## License & Copyright
 
-**Copyright &copy; 2026 Abuthwahir H M**
-*All Rights Reserved.*
+**Copyright © 2026 Abuthwahir H M**
+**All Rights Reserved**
 
-> ⚠️ **STRICTLY NOT AN OPEN-SOURCE TEMPLATE.**
+> ⚠️ **This repository is not an open-source template.**
 
-This repository and its contents encompass a custom-coded, heavily individualized personal portfolio. It is **not under an MIT or permissive license**. 
+This portfolio is a custom-built personal project created to represent my individual work, design preferences, and professional identity. The source code, design elements, UI/UX concepts, branding, and overall implementation are protected under copyright law.
 
-**✓ Permitted:**
-You are completely welcome to browse this source code for educational purposes or to evaluate my engineering practices as a hiring manager, recruiter, or peer developer.
+### Permitted Use
 
-**✗ Prohibited:**
-You may **NOT** copy, clone, distribute, or repurpose the visual design, UI/UX aesthetics, layout, or source code for your own portfolio, commercial products, or direct application. 
+✓ You may:
 
-If you appreciate the design and wish to discuss potential usage rights or would like to collaborate on a different project, please contact me directly at the email provided above.
+* View and explore the source code for educational purposes.
+* Review the project to evaluate my development skills, coding practices, and technical capabilities.
+* Reference the repository as part of recruitment, academic, or professional evaluation.
+
+### Prohibited Use
+
+✗ You may not:
+
+* Copy, clone, or redistribute this project in whole or in part.
+* Reuse the visual design, UI/UX elements, branding, layout, or implementation for personal or commercial projects.
+* Republish, modify, or present this work as your own.
+* Use this repository as a template or foundation for another portfolio website.
+
+### Permission Requests
+
+If you are interested in discussing licensing, usage rights, or potential collaboration opportunities, please contact me directly at:
+
+**[hmabuthwahir@gmail.com](mailto:hmabuthwahir@gmail.com)**
