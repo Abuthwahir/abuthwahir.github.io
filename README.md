@@ -6,7 +6,7 @@ A custom-developed developer portfolio designed to showcase my technical project
 
 I am always open to discussing projects, networking opportunities, and potential collaborations.
 
-* **Email:** [hmabuthwahir@gmail.com](mailto:hmabuthwahir@gmail.com)
+* **Email:** [hmabuthwahir@gmail.com](mailto:hmabuthwahir@gmail.com) ( Mail only if required )
 * **Portfolio:** https://abuthwahir.github.io/
 
 ---
